@@ -1,20 +1,19 @@
 import logging
-import random
 
 from fastapi import APIRouter
-import pandas as pd
+from typing import List 
 from pydantic import BaseModel, Field, validator
 
 log = logging.getLogger(__name__)
 router = APIRouter()
 
 
-class Item(BaseModel):
+class recommendReq(BaseModel):
     """Use this data model to parse the request body JSON."""
 
-    x1: float = Field(..., example=3.14)
-    x2: int = Field(..., example=-42)
-    x3: str = Field(..., example='banjo')
+    rating: float = Field(..., example=4.0)
+    flavors: str = Field(..., example=['', ''])
+    effects: str = Field(..., example=['', ''])
 
     def to_df(self):
         """Convert pydantic object to pandas dataframe with 1 row."""
